@@ -1,0 +1,14 @@
+.header {
+    font-size: 150px;
+    -unity-font-definition: ınitial;
+    -unity-font: url("project://database/Assets/Fonts/Kenney%20Mini%20Square.ttf?fileID=12800000&guid=5c7a7437ce38a62459e1604e9b9aede7&type=3#Kenney Mini Square");
+}
+
+.countdown {
+    font-size: 200px;
+    -unity-font: url("project://database/Assets/Fonts/Kenney%20Pixel%20Square.ttf?fileID=12800000&guid=1b429e2f6c1ab964b9eeacccd3127903&type=3#Kenney Pixel Square");
+    -unity-font-definition: ınitial;
+}
+
+.info {
+}

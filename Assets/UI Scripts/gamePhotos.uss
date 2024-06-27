@@ -1,0 +1,99 @@
+.GameButtons {
+    width: 994px;
+    height: 450px;
+    align-self: center;
+    left: 0;
+    top: 50px;
+    -unity-background-image-tint-color: rgba(255, 255, 255, 0.13);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+    transition-duration: 0.5s;
+}
+
+.GamePhotos {
+    position: absolute;
+    left: 65px;
+    top: 50px;
+    border-top-left-radius: 70px;
+    border-top-right-radius: 70px;
+    border-bottom-right-radius: 70px;
+    border-bottom-left-radius: 70px;
+}
+
+.GameLabels {
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+    background-color: rgba(232, 232, 232, 0);
+}
+
+.GameHeaders {
+    background-color: rgba(255, 254, 254, 0);
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    color: rgb(255, 42, 0);
+}
+
+.GameInfos {
+    color: rgb(0, 255, 14);
+    -unity-font-definition: ınitial;
+    -unity-font: url("project://database/Assets/Fonts/Kenney%20High.ttf?fileID=12800000&guid=490d1b19d7567124b884fc835fa0290e&type=3#Kenney High");
+    font-size: 35px;
+}
+
+.GameButtons:hover {
+    font-size: 25px;
+    color: rgb(0, 255, 77);
+    scale: 1.2 1.2;
+    background-color: rgb(115, 18, 41);
+    -unity-background-image-tint-color: rgb(60, 165, 31);
+}
+
+.Meteor {
+    transition-duration: 5s;
+}
+
+.Meteor:hover {
+    position: relative;
+    transform-origin: center;
+    scale: 1.1 1;
+    rotate: 360deg;
+}
+
+.rocketDown {
+    transition-duration: 1s;
+    transition-timing-function: ease-out-cubic;
+}
+
+.rocketDown:hover {
+    transform-origin: bottom;
+    rotate: 0;
+    translate: 0 100px;
+}
+
+.rocketUp {
+    transition-duration: 1s;
+    transition-timing-function: ease-out-cubic;
+}
+
+.RocketUp:hover {
+    transform-origin: center;
+    scale: 1.2 1;
+    rotate: 500deg;
+    transition-timing-function: ease-out-cubic;
+}
+
+.ailen {
+    transition-duration: 4s;
+}
+
+.ailen:hover {
+    rotate: 360deg;
+}

@@ -1,0 +1,20 @@
+.button {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    justify-content: space-between;
+    align-self: center;
+    position: relative;
+    margin-top: 150px;
+    align-items: flex-start;
+    font-size: 50px;
+    width: auto;
+    height: auto;
+    -unity-font: url("project://database/Assets/Fonts/Kenney%20Future.ttf?fileID=12800000&guid=32c9421603204cb4db8c29c49f28244e&type=3#Kenney Future");
+    -unity-font-definition: ınitial;
+}
+
+.button:hover {
+    scale: 1.2 1.5;
+    -unity-background-image-tint-color: rgb(162, 82, 186);
+    background-color: rgb(125, 29, 128);
+}

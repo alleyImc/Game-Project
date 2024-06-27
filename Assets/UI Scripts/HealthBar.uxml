@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-image: none;">
+        <ui:ProgressBar value="90" title="UZAYLI" name="HealtBar" usage-hints="DynamicTransform, DynamicColor" style="height: 95px; width: 685px; position: absolute; top: 2353px; left: 28px; font-size: 14px; padding-top: 0; -unity-background-image-tint-color: rgb(255, 255, 255); background-color: rgba(165, 160, 160, 0);" />
+    </ui:VisualElement>
+</ui:UXML>
