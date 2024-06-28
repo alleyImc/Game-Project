@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class ShipController : MonoBehaviour
 {
     private Vector2 touchStartPos;
     private Vector2 touchEndPos;
@@ -42,13 +43,25 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer()
     {
-        // Ekrandaki dokunma pozisyonunu dünya pozisyonuna çevir
         Vector3 screenToWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(touchEndPos.x, touchEndPos.y, Camera.main.nearClipPlane));
-
-        // Yalnýzca X ve Y koordinatlarýný kullanarak pozisyonu güncelle
         newPosition = new Vector3(screenToWorldPos.x, screenToWorldPos.y, transform.position.z);
-
-        // Uzay aracýný yeni pozisyona hareket ettir
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * 5f);
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Meteor"))
+        {
+            GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+        Debug.Log("Oyun Bitti!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
+
+
+
