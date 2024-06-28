@@ -10,31 +10,49 @@ public class Game2_moveShip : MonoBehaviour
     private float currentSpeed = 0f;
     private float maxSpeed = 5f;
     private bool isMoving = false;
+    private CountdownController countdownController;
+
+    void Start()
+    {
+        //find countdown
+        countdownController = FindObjectOfType<CountdownController>();
+        if (countdownController == null)
+        {
+            Debug.LogError("CountdownController not found in the scene.");
+        }
+    }
 
     void Update()
     {
-        //screen control
-        if (Input.GetMouseButtonDown(0))
+        // wait until countdown finishes
+        if (countdownController != null && countdownController.IsCountdownFinished())
         {
-            IncreaseSpeed();
-        }
+            //screen control
+            if (Input.GetMouseButtonDown(0))
+            {
+                IncreaseSpeed();
+            }
 
-        // movement control
-        if (isMoving)
-        {
-            float translation = currentSpeed * Time.deltaTime;
-            transform.Translate(0, translation, 0);
+            // movement control
+            if (isMoving)
+            {
+                float translation = currentSpeed * Time.deltaTime;
+                transform.Translate(0, translation, 0);
+            }
         }
     }
 
     void IncreaseSpeed()
     {
-        isMoving = true;
-        currentSpeed += speedIncrement;
-
-        if (currentSpeed > maxSpeed)
+        if (countdownController.IsCountdownFinished()) 
         {
-            currentSpeed = maxSpeed;
+            isMoving = true;
+            currentSpeed += speedIncrement;
+
+            if (currentSpeed > maxSpeed)
+            {
+                currentSpeed = maxSpeed;
+            }
         }
     }
 
@@ -58,5 +76,6 @@ public class Game2_moveShip : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
+
 
 

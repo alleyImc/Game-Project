@@ -5,18 +5,17 @@ using UnityEngine.UIElements;
 
 public class CountdownController : MonoBehaviour
 {
-    public UIDocument uiDocument; 
-    private VisualElement countdownPanel; 
-    private Label countdownLabel; 
-    public float countdownDuration = 5f; 
-    private float timer; 
+    public UIDocument uiDocument;
+    private VisualElement countdownPanel;
+    private Label countdownLabel;
+    public float countdownDuration = 5f;
+    private float timer;
+    private bool countdownFinished = false;
 
     void Start()
     {
-        
         var root = uiDocument.rootVisualElement;
 
-        
         countdownPanel = root.Q<VisualElement>("CountdownBorder");
         countdownLabel = root.Q<Label>("CountdownLabel");
 
@@ -51,7 +50,6 @@ public class CountdownController : MonoBehaviour
 
     void UpdateCountdownUI()
     {
-        // Geri sayým metnini güncelle
         if (countdownLabel != null)
         {
             countdownLabel.text = Mathf.Ceil(timer).ToString();
@@ -61,13 +59,18 @@ public class CountdownController : MonoBehaviour
     void FinishCountdown()
     {
         Debug.Log("Countdown finished! Start the game now.");
+        countdownFinished = true;
 
-        // Geri sayým bittiðinde geri sayým panelini sakla veya kaldýr
+        // hide countdown when it finishes
         if (countdownPanel != null)
         {
             countdownPanel.style.display = DisplayStyle.None;
         }
+    }
 
-        
+    public bool IsCountdownFinished()
+    {
+        return countdownFinished;
     }
 }
+
