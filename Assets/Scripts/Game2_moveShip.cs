@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game2_moveShip : MonoBehaviour
 {
-    public float baseSpeed = 0.6f; 
-    public float speedIncrement = 0.6f; 
-    private float currentSpeed = 0f; 
-    private float maxSpeed = 5f; 
-    private bool isMoving = false; 
+    public float baseSpeed = 0.6f;
+    public float speedIncrement = 0.6f;
+    private float currentSpeed = 0f;
+    private float maxSpeed = 5f;
+    private bool isMoving = false;
 
     void Update()
     {
         //screen control
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonDown(0))
         {
             IncreaseSpeed();
         }
@@ -43,18 +44,19 @@ public class Game2_moveShip : MonoBehaviour
         currentSpeed = 0f;
     }
 
-
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject.CompareTag("Finish"))
+        if (collision.gameObject.CompareTag("Finish"))
         {
-            WinGame();
+            GameOver();
         }
     }
 
-    void WinGame()
+    void GameOver()
     {
-        Debug.Log("You Win!");
+        Debug.Log("Oyun Bitti!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
+
 
