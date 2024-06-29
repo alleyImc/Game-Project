@@ -9,6 +9,8 @@ public class ShipController : MonoBehaviour
     private Vector2 touchEndPos;
     private Vector3 newPosition;
 
+    public GameOver1 gameOver1;
+
     void Update()
     {
         HandleTouchInput();
@@ -59,7 +61,8 @@ public class ShipController : MonoBehaviour
     void GameOver()
     {
         Debug.Log("Oyun Bitti!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameOver1.ShowGameOverScreen();
+        Time.timeScale = 0f; // Stops Game
     }
 }
 

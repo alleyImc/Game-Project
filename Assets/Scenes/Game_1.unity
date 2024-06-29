@@ -462,7 +462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1004392094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,10 +472,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1004392093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adcacfbf36192ae479aeef2163e44d66, type: 3}
+  m_Script: {fileID: 11500000, guid: 1569db03a24a96f4ab57eac5d917fad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverVisualTree: {fileID: 9197481963319205126, guid: c3e416cc2897cd14c99caca47db8c6f2, type: 3}
 --- !u!114 &1004392095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,6 +958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07202d29d6997874a809d390a7cef2ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOver1: {fileID: 1004392094}
 --- !u!50 &2118425190
 Rigidbody2D:
   serializedVersion: 4
