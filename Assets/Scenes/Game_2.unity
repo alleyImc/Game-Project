@@ -224,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 0.1
   speedIncrement: 0.1
-  gameOver1: {fileID: 1806602911}
+  gameOver2: {fileID: 1806602914}
 --- !u!70 &36451715
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1058,7 +1058,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1806602913}
   - component: {fileID: 1806602912}
-  - component: {fileID: 1806602911}
+  - component: {fileID: 1806602914}
   m_Layer: 5
   m_Name: Game Over
   m_TagString: Untagged
@@ -1066,18 +1066,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1806602911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1806602910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1569db03a24a96f4ab57eac5d917fad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1806602912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,7 +1080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PanelSettings: {fileID: 11400000, guid: 3ef0f4462b82e154abb7f561a5a6599c, type: 2}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: c3e416cc2897cd14c99caca47db8c6f2, type: 3}
+  sourceAsset: {fileID: 9197481963319205126, guid: f6b492281bdfd8d498c6e9c1e262b7a3, type: 3}
   m_SortingOrder: 0
 --- !u!4 &1806602913
 Transform:
@@ -1109,6 +1097,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1806602914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806602910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f18e634d8050c9548a11090c128bad53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1618585375592272293
 GameObject:
   m_ObjectHideFlags: 0

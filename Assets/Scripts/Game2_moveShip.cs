@@ -12,7 +12,7 @@ public class Game2_moveShip : MonoBehaviour
     private bool isMoving = false;
     private CountdownController countdownController;
 
-    public GameOver1 gameOver1;
+    public GameOver2 gameOver2;
 
     void Start()
     {
@@ -84,7 +84,7 @@ public class Game2_moveShip : MonoBehaviour
     {
         Debug.Log("Oyun Bitti!");
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gameOver1.ShowGameOverScreen();
+        gameOver2.ShowGameOverScreen();
         Time.timeScale = 0f;
     }
 }
