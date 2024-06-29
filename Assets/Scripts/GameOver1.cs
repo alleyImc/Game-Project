@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class GameOver1 : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class GameOver1 : MonoBehaviour
 
     private string mainMenuSceneName = "ChooseGame";
     private string currentSceneName = "Game_1";
+
+    //private string currentSceneName = SceneManager.GetActiveScene().name;
+
+    
 
     private void Awake()
     {
@@ -50,12 +55,21 @@ public class GameOver1 : MonoBehaviour
     {
         Debug.Log("Retry button pressed");
         UnityEngine.SceneManagement.SceneManager.LoadScene(currentSceneName);
+
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
     }
 
     private void MenuClick(ClickEvent evt)
     {
         Debug.Log("Menu button pressed");
         UnityEngine.SceneManagement.SceneManager.LoadScene(mainMenuSceneName);
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
     }
 
     private void OnAllButtonsClick(ClickEvent evt)

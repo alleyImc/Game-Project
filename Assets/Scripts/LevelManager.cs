@@ -24,6 +24,11 @@ public class LevelManager : MonoBehaviour
         if (sceneToLoad != null)
         {
             SceneManager.LoadScene(sceneToLoad);
+
+            if(Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+            }
         }
     }
 

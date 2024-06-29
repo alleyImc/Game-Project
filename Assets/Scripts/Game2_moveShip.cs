@@ -12,6 +12,8 @@ public class Game2_moveShip : MonoBehaviour
     private bool isMoving = false;
     private CountdownController countdownController;
 
+    public GameOver1 gameOver1;
+
     void Start()
     {
         //find countdown
@@ -70,10 +72,20 @@ public class Game2_moveShip : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            GameOver();
+        }
+    }
+
     void GameOver()
     {
         Debug.Log("Oyun Bitti!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameOver1.ShowGameOverScreen();
+        Time.timeScale = 0f;
     }
 }
 
