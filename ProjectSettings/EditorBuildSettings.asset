@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Game_3.unity
     guid: 6644f4d9c275ea04ab7c80fcaa85768e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Mirror_Test.unity
     guid: 337d529f97547a54cb82b3bf284f829d
   - enabled: 0
@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Game_1 1.unity
     guid: e2329b03af960c24b8b68f565dd330a0
+  - enabled: 1
+    path: Assets/Mirror/Examples/EdgegapLobby/EdgegapLobbyTanks.unity
+    guid: 5dbbfee253d4c6e4d915cb88674ec680
   m_configObjects: {}
