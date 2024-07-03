@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Mirror.Game2
 {
@@ -29,5 +30,49 @@ namespace Mirror.Game2
             // call base functionality (actually destroys the player)
             base.OnServerDisconnect(conn);
         }
+
+        /*[Server]
+        public void StartGame()
+        {
+         if(Event buttonx clicked)
+            {
+                CmdChangeScene(); // Bu bir command olduðu için, serverda çalýþtýðý zaman clientta da çalýþacak.
+                // Commandlar bir kere çalýþtý mý, herkeste çalýþýr.
+            }
+        }
+
+        [Command]
+        public void CmdChangeScene1()
+        {
+            SceneManager.LoadScene("1.Sahne");
+        }
+
+
+        [Command]
+        public void CmdChangeScene2()
+        {
+            SceneManager.LoadScene("2.Sahne");
+        }*/
+
+        // Bu olmazsa
+
+
+        /*public override void OnServerSceneChanged(string sceneName)
+        {
+            if (sceneName.StartsWith("MainMenu") && Event buttonx clicked)
+            {
+                
+                
+                Alttakileri boþver
+                //GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
+                //NetworkServer.Spawn(playerSpawnSystemInstance);
+
+                //GameObject roundSystemInstance = Instantiate(roundSystem);
+                //NetworkServer.Spawn(roundSystemInstance);
+            }
+        }*/
+
+
+
     }
 }

@@ -5,19 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: cd6668fe344df2c4aa9368cc09078b00
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ChooseGame.unity
     guid: 19cb5322c4b5fc3419b0e0bca974bcf5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Game_1.unity
     guid: 5a6a524d73893794194ee23b8fb2dcee
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Game_2.unity
     guid: 80a41d7ee23e7c84e930a9d338bdd3e0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Game_3.unity
     guid: 6644f4d9c275ea04ab7c80fcaa85768e
   - enabled: 0
@@ -32,7 +32,4 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Game_1 1.unity
     guid: e2329b03af960c24b8b68f565dd330a0
-  - enabled: 1
-    path: Assets/Mirror/Examples/EdgegapLobby/EdgegapLobbyTanks.unity
-    guid: 5dbbfee253d4c6e4d915cb88674ec680
   m_configObjects: {}

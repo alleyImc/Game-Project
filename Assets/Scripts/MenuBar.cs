@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using Mirror;
 
 public class MenuBar : MonoBehaviour
 {
@@ -15,7 +15,6 @@ public class MenuBar : MonoBehaviour
 
     private void Awake()
     {
-
         _document = GetComponent<UIDocument>();
         _button = _document.rootVisualElement.Q("MenuButton") as Button;
         _button.RegisterCallback<ClickEvent>(OnButtonClick);
@@ -39,11 +38,12 @@ public class MenuBar : MonoBehaviour
 
     private void OnButtonClick(ClickEvent evt)
     {
-
         Debug.Log("menu button pressed");
-        sceneName = "ChooseGame";
-        LevelManager.levelManager.ChangeScene(sceneName);
-
+        sceneName = "MainMenu";
+        if (NetworkServer.active)
+        {
+            NetworkManager.singleton.ServerChangeScene(sceneName);
+        }
     }
 
     private void OnAllButtonsClick(ClickEvent evt)

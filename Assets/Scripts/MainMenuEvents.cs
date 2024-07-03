@@ -1,6 +1,8 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 
@@ -54,8 +56,10 @@ public class MainMenuEvents : MonoBehaviour
     {
 
         Debug.Log("start button pressed");
-        sceneName = "ChooseGame";
-        MainMenuController.mainMenuController.ChangeScene(sceneName);
+        if (NetworkServer.active)
+        {
+            NetworkManager.singleton.ServerChangeScene("ChooseGame");
+        }
 
     }
 
@@ -72,6 +76,6 @@ public class MainMenuEvents : MonoBehaviour
 
     private void OnAllButtonsClick(ClickEvent evt)
     {
-        _audioSource.Play();
+        //_audioSource.Play();
     }
 }

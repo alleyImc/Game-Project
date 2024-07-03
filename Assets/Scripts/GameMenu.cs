@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Mirror;
 
 public class GameMenu : MonoBehaviour
 {
@@ -32,6 +32,8 @@ public class GameMenu : MonoBehaviour
         {
             _GameButtons[i].RegisterCallback<ClickEvent>(OnAllButtonsClick);
         }
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnDisable()
@@ -40,29 +42,44 @@ public class GameMenu : MonoBehaviour
 
         for (int i = 0; i < _GameButtons.Count; i++)
         {
-            _GameButtons[i].RegisterCallback<ClickEvent>(OnAllButtonsClick);
+            _GameButtons[i].UnregisterCallback<ClickEvent>(OnAllButtonsClick);
         }
     }
 
     private void OnLevelOneChoose(ClickEvent evt)
     {
         Debug.Log("game 1 button pressed");
-        LevelManager.levelManager.ChangeScene("Game_1");
+        if (NetworkServer.active)
+        {
+            NetworkManager.singleton.ServerChangeScene("Game_1");
+        }
     }
+
     private void OnLevelTwoChoose(ClickEvent evt)
     {
         Debug.Log("game 2 button pressed");
-        LevelManager.levelManager.ChangeScene("Game_2");
+        if (NetworkServer.active)
+        {
+            NetworkManager.singleton.ServerChangeScene("Game_2");
+        }
     }
+
     private void OnLevelThreeChoose(ClickEvent evt)
     {
         Debug.Log("game 3 button pressed");
-        LevelManager.levelManager.ChangeScene("Game_3");
+        if (NetworkServer.active)
+        {
+            NetworkManager.singleton.ServerChangeScene("Game_3");
+        }
     }
+
     private void OnMainMenuChoose(ClickEvent evt)
     {
         Debug.Log("Main Menu button pressed");
-        LevelManager.levelManager.ChangeScene("MainMenu");
+        if (NetworkServer.active)
+        {
+            NetworkManager.singleton.ServerChangeScene("MainMenu");
+        }
     }
 
     private void OnAllButtonsClick(ClickEvent evt)

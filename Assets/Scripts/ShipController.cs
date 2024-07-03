@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
-public class ShipController : MonoBehaviour
+public class ShipController : NetworkBehaviour
 {
     private Vector2 touchStartPos;
     private Vector2 touchEndPos;
@@ -13,6 +14,9 @@ public class ShipController : MonoBehaviour
 
     void Update()
     {
+        if (!isLocalPlayer)
+            return;
+
         HandleTouchInput();
     }
 
@@ -65,6 +69,3 @@ public class ShipController : MonoBehaviour
         Time.timeScale = 0f; // Stops Game
     }
 }
-
-
-
