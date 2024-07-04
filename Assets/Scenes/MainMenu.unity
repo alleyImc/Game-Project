@@ -164,7 +164,7 @@ MonoBehaviour:
   autoConnectClientBuild: 0
   offlineScene: Assets/Scenes/MainMenu.unity
   onlineScene: Assets/Scenes/ChooseGame.unity
-  transport: {fileID: 0}
+  transport: {fileID: 201656997}
   networkAddress: localhost
   maxConnections: 100
   disconnectInactiveConnections: 0
