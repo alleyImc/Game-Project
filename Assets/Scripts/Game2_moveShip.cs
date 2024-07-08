@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
-public class Game2_moveShip : MonoBehaviour
+public class Game2_moveShip : NetworkBehaviour
 {
     public float baseSpeed = 0.6f;
     public float speedIncrement = 0.6f;
@@ -14,28 +15,55 @@ public class Game2_moveShip : MonoBehaviour
 
     public GameOver2 gameOver2;
 
+    private static bool gameEnded = false; // Oyunun bitiþ durumunu kontrol eden deðiþken
+
+    [SerializeField] public uint playerId; // Oyuncu ID'si
+
     void Start()
     {
-        //find countdown
+        if (SceneManager.GetActiveScene().name != "Game_2")
+        {
+            this.enabled = false; // Disable this script if not in Game_2
+            return;
+        }
+        else
+        {
+            this.enabled = true;
+        }
+
+        // CountdownController'ý bul
         countdownController = FindObjectOfType<CountdownController>();
         if (countdownController == null)
         {
             Debug.LogError("CountdownController not found in the scene.");
         }
+
+        gameOver2 = FindObjectOfType<GameOver2>();
+        if (gameOver2 == null)
+        {
+            Debug.LogError("GameOver2 not found in the scene.");
+        }
+
+        ResetGame(); // Oyunun baþlangýcýnda hýz ve oyun bitiþ durumunu sýfýrla
     }
 
     void Update()
     {
-        // wait until countdown finishes
-        if (countdownController != null && countdownController.IsCountdownFinished())
+        if (SceneManager.GetActiveScene().name != "Game_2")
         {
-            //screen control
+            return;
+        }
+
+        // Countdown bitene kadar bekle
+        if (countdownController != null && countdownController.IsCountdownFinished() && !gameEnded)
+        {
+            // Ekran kontrolü
             if (Input.GetMouseButtonDown(0))
             {
                 IncreaseSpeed();
             }
 
-            // movement control
+            // Hareket kontrolü
             if (isMoving)
             {
                 float translation = currentSpeed * Time.deltaTime;
@@ -46,7 +74,7 @@ public class Game2_moveShip : MonoBehaviour
 
     void IncreaseSpeed()
     {
-        if (countdownController.IsCountdownFinished()) 
+        if (countdownController.IsCountdownFinished())
         {
             isMoving = true;
             currentSpeed += speedIncrement;
@@ -64,30 +92,57 @@ public class Game2_moveShip : MonoBehaviour
         currentSpeed = 0f;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Finish"))
-        {
-            GameOver();
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (SceneManager.GetActiveScene().name != "Game_2")
+        {
+            return;
+        }
+
         if (collision.gameObject.CompareTag("Finish"))
         {
+            gameOver2 = FindAnyObjectByType<GameOver2>();
             GameOver();
         }
     }
 
     void GameOver()
     {
+        if (SceneManager.GetActiveScene().name != "Game_2")
+        {
+            return;
+        }
+
         Debug.Log("Oyun Bitti!");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gameOver2.ShowGameOverScreen();
-        Time.timeScale = 0f;
+        gameEnded = true; // Oyunun bittiðini belirt
+
+        // Sunucudan tüm oyunculara oyun bittiðini bildir
+        if (isServer)
+        {
+            RpcGameOver(playerId);
+        }
+
+        if (gameOver2 != null)
+        {
+            gameOver2.ShowGameOverScreen(playerId);
+        }
+    }
+
+    [ClientRpc]
+    void RpcGameOver(uint winnerId)
+    {
+        gameEnded = true;
+        StopMoving();
+
+        if (gameOver2 != null)
+        {
+            gameOver2.ShowGameOverScreen(winnerId);
+        }
+    }
+
+    void ResetGame()
+    {
+        gameEnded = false; // Oyunun bitiþ durumunu sýfýrla
+        StopMoving(); // Hýzý ve hareketi sýfýrla
     }
 }
-
-
-
