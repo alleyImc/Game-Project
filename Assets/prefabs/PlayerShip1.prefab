@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 9192844165452183249}
   - component: {fileID: 1059496647553635247}
   - component: {fileID: 5500799146016679074}
+  - component: {fileID: 4681235774317368956}
   - component: {fileID: 7617304893339797315}
   - component: {fileID: 4894533661347770629}
-  - component: {fileID: 4681235774317368956}
   m_Layer: 0
   m_Name: PlayerShip1
   m_TagString: Untagged
@@ -151,6 +151,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4681235774317368956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6543263225257193276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cc35f1d0b7c18240bd39b1e2d7c24fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  baseSpeed: 0.6
+  speedIncrement: 0.6
+  gameOver2: {fileID: 0}
+  playerId: 0
 --- !u!114 &7617304893339797315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,18 +221,3 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
---- !u!114 &4681235774317368956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6543263225257193276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cc35f1d0b7c18240bd39b1e2d7c24fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseSpeed: 0.6
-  speedIncrement: 0.6
-  gameOver2: {fileID: 0}

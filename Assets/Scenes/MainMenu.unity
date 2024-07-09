@@ -266,6 +266,9 @@ MonoBehaviour:
   spawnPrefabs:
   - {fileID: 6543263225257193276, guid: d7fe6ec07f4ca384d9239269be5dccd2, type: 3}
   - {fileID: 7895517442927201446, guid: 8ac143ef493941648abb3adfad506cda, type: 3}
+  - {fileID: 869213920509920178, guid: 6075f97f0e866234bbe10b84fc7820cc, type: 3}
+  - {fileID: 1458569173721033024, guid: a7c4958d37a33cb40870cf3853a36657, type: 3}
+  - {fileID: 3653571631799803790, guid: 9566c79a0da5fef4d8c211d486881798, type: 3}
   exceptionsDisconnect: 1
   snapshotSettings:
     bufferTimeMultiplier: 2
@@ -281,8 +284,10 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
-  playerPrefab1: {fileID: 6543263225257193276, guid: d7fe6ec07f4ca384d9239269be5dccd2, type: 3}
-  playerPrefab2: {fileID: 7895517442927201446, guid: 8ac143ef493941648abb3adfad506cda, type: 3}
+  playerPrefabGame1Host: {fileID: 869213920509920178, guid: 6075f97f0e866234bbe10b84fc7820cc, type: 3}
+  playerPrefabGame1Client: {fileID: 1458569173721033024, guid: a7c4958d37a33cb40870cf3853a36657, type: 3}
+  playerPrefabGame2Host: {fileID: 6543263225257193276, guid: d7fe6ec07f4ca384d9239269be5dccd2, type: 3}
+  playerPrefabGame2Client: {fileID: 7895517442927201446, guid: 8ac143ef493941648abb3adfad506cda, type: 3}
 --- !u!1 &224940614
 GameObject:
   m_ObjectHideFlags: 0

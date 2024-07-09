@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 3033068947484667254}
   - component: {fileID: 3555246948660304128}
   - component: {fileID: 8120548050863936720}
-  - component: {fileID: 2818052868893026852}
-  - component: {fileID: 1184686178354516812}
   - component: {fileID: -1733739862154337710}
   - component: {fileID: -7915486797284755468}
+  - component: {fileID: 4016621024933731230}
   m_Layer: 0
   m_Name: PlayerShip2
   m_TagString: Untagged
@@ -154,31 +153,6 @@ PolygonCollider2D:
       - {x: 0.49243397, y: -0.19690609}
       - {x: 0.14269789, y: 0.20039593}
   m_UseDelaunayMesh: 0
---- !u!114 &2818052868893026852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458569173721033024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07202d29d6997874a809d390a7cef2ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOver1: {fileID: 0}
---- !u!114 &1184686178354516812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458569173721033024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1569db03a24a96f4ab57eac5d917fad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-1733739862154337710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,3 +204,20 @@ MonoBehaviour:
   rotationSensitivity: 0.01
   positionPrecision: 0.01
   scalePrecision: 0.01
+--- !u!114 &4016621024933731230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458569173721033024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07202d29d6997874a809d390a7cef2ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  gameOver2: {fileID: 0}
+  playerId: 1

@@ -10,14 +10,52 @@ public class ShipController : NetworkBehaviour
     private Vector2 touchEndPos;
     private Vector3 newPosition;
 
+    private CountdownController countdownController;
     public GameOver1 gameOver1;
+
+    private static bool gameEnded = false; 
+
+    [SerializeField] public uint playerId; 
+
+    void Start()
+    {
+        if (SceneManager.GetActiveScene().name != "Game_1")
+        {
+            this.enabled = false; // Disable this script if not in Game_2
+            return;
+        }
+        else
+        {
+            this.enabled = true;
+        }
+
+        // find CountdownController
+        countdownController = FindObjectOfType<CountdownController>();
+        if (countdownController == null)
+        {
+            Debug.LogError("CountdownController not found in the scene.");
+        }
+
+        gameOver1 = FindObjectOfType<GameOver1>();
+        if (gameOver1 == null)
+        {
+            Debug.LogError("GameOver2 not found in the scene.");
+        }
+
+        ResetGame(); 
+    }
 
     void Update()
     {
-        if (!isLocalPlayer)
+        if (SceneManager.GetActiveScene().name != "Game_1")
+        {
             return;
+        }
 
-        HandleTouchInput();
+        if (!gameEnded)
+        {
+            HandleTouchInput();
+        }
     }
 
     void HandleTouchInput()
@@ -56,16 +94,79 @@ public class ShipController : NetworkBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (SceneManager.GetActiveScene().name != "Game_1")
+        {
+            return;
+        }
+
         if (collision.gameObject.CompareTag("Meteor"))
         {
+            // Trigger game over
+            gameOver1 = FindObjectOfType<GameOver1>();
             GameOver();
         }
     }
 
     void GameOver()
     {
+        if (SceneManager.GetActiveScene().name != "Game_1")
+        {
+            return;
+        }
+
         Debug.Log("Oyun Bitti!");
-        gameOver1.ShowGameOverScreen();
-        Time.timeScale = 0f; // Stops Game
+        gameEnded = true; 
+
+        // all players should know the game has finished from server 
+        if (isServer)
+        {
+            RpcGameOver(playerId);
+        }
+
+        if (gameOver1 != null)
+        {
+            gameOver1.ShowGameOverScreen(playerId);
+        }
+    }
+
+    //stop player movement
+    void StopMoving()
+    {
+        touchStartPos = Vector2.zero;
+        touchEndPos = Vector2.zero;
+        newPosition = transform.position; 
+    }
+
+    //stop meteor movement
+    void StopMeteorMove()
+    {
+        MeteorMove[] meteorMoves = FindObjectsOfType<MeteorMove>();
+
+        foreach (MeteorMove meteorMove in meteorMoves)
+        {
+            meteorMove.enabled = false; 
+        }
+    }
+
+
+    [ClientRpc]
+    void RpcGameOver(uint winnerId)
+    {
+        gameEnded = true;
+        StopMoving();
+        StopMeteorMove();
+        Debug.Log("Oyun Bitti!");
+
+        if (gameOver1 != null)
+        {
+            gameOver1.ShowGameOverScreen(winnerId);
+        }
+    }
+
+    void ResetGame()
+    {
+        gameEnded = false; 
+        StopMoving();
+        StopMeteorMove();
     }
 }

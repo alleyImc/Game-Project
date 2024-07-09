@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class CustomNetworkManager : NetworkManager
 {
-    public GameObject playerPrefab1;
-    public GameObject playerPrefab2;
+    public GameObject playerPrefabGame1Host;
+    public GameObject playerPrefabGame1Client;
+    public GameObject playerPrefabGame2Host;
+    public GameObject playerPrefabGame2Client;
 
     public override void OnStartServer()
     {
@@ -21,31 +23,41 @@ public class CustomNetworkManager : NetworkManager
         SceneManager.sceneLoaded -= OnServerSceneChanged;
     }
 
-    // Scene Change
+    // Handles scene change for both games
     void OnServerSceneChanged(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Game_2")
+        foreach (NetworkConnectionToClient conn in NetworkServer.connections.Values)
         {
-            foreach (NetworkConnectionToClient conn in NetworkServer.connections.Values)
+            if (scene.name == "Game_1")
             {
-                SpawnCharacter(conn);
+                SpawnCharacter(conn, playerPrefabGame1Host, playerPrefabGame1Client);
+            }
+            else if (scene.name == "Game_2")
+            {
+                SpawnCharacter(conn, playerPrefabGame2Host, playerPrefabGame2Client);
             }
         }
     }
 
-    // players prefabs spawn in correct places
-    void SpawnCharacter(NetworkConnectionToClient conn)
+    // Spawns the correct character prefab based on the game and connection ID
+    void SpawnCharacter(NetworkConnectionToClient conn, GameObject hostPrefab, GameObject clientPrefab)
     {
-        GameObject playerPrefab = conn.connectionId == 0 ? playerPrefab1 : playerPrefab2; // first player server second client
+        GameObject playerPrefab = conn.connectionId == 0 ? hostPrefab : clientPrefab; // first player server, second client
         GameObject player = Instantiate(playerPrefab);
         NetworkServer.AddPlayerForConnection(conn, player);
     }
 
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
-        if (SceneManager.GetActiveScene().name == "Game_2")
+        string activeSceneName = SceneManager.GetActiveScene().name;
+
+        if (activeSceneName == "Game_1")
         {
-            SpawnCharacter(conn);
+            SpawnCharacter(conn, playerPrefabGame1Host, playerPrefabGame1Client);
+        }
+        else if (activeSceneName == "Game_2")
+        {
+            SpawnCharacter(conn, playerPrefabGame2Host, playerPrefabGame2Client);
         }
         else
         {
@@ -56,8 +68,7 @@ public class CustomNetworkManager : NetworkManager
     public override void OnClientConnect()
     {
         base.OnClientConnect();
-        //if client in main menu
-        //no need to do anything,
-        //player will be spawned when scene changes to game
+        // If client is in the main menu
+        // No need to do anything, player will be spawned when scene changes to the game
     }
 }

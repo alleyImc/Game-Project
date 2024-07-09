@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using Mirror;
 
 public class GameOver1 : MonoBehaviour
 {
@@ -10,13 +11,10 @@ public class GameOver1 : MonoBehaviour
     private Button _retryButton;
     private Button _menuButton;
     private List<Button> _gameOverButtons = new List<Button>();
+    private Label _wonLabel; //winner label
 
     private string mainMenuSceneName = "ChooseGame";
     private string currentSceneName = "Game_1";
-
-    //private string currentSceneName = SceneManager.GetActiveScene().name;
-
-    
 
     private void Awake()
     {
@@ -36,8 +34,24 @@ public class GameOver1 : MonoBehaviour
             _gameOverButtons[i].RegisterCallback<ClickEvent>(OnAllButtonsClick);
         }
 
-        // Baþlangýçta Game Over ekranýný gizle
+        // find winner label
+        _wonLabel = _document.rootVisualElement.Q<Label>("WonLabel");
+
+        // hide gameover 
         _document.rootVisualElement.style.display = DisplayStyle.None;
+    }
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name != "Game_1")
+        {
+            this.enabled = false; // Disable this script if not in Game_1
+            return;
+        }
+        else
+        {
+            this.enabled = true;
+        }
     }
 
     private void OnDisable()
@@ -54,21 +68,20 @@ public class GameOver1 : MonoBehaviour
     private void RetryClick(ClickEvent evt)
     {
         Debug.Log("Retry button pressed");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(currentSceneName);
 
-        if (Time.timeScale == 0)
+        if (NetworkServer.active)
         {
-            Time.timeScale = 1;
+            NetworkManager.singleton.ServerChangeScene("Game_1");
         }
     }
 
     private void MenuClick(ClickEvent evt)
     {
         Debug.Log("Menu button pressed");
-        UnityEngine.SceneManagement.SceneManager.LoadScene(mainMenuSceneName);
-        if (Time.timeScale == 0)
+
+        if (NetworkServer.active)
         {
-            Time.timeScale = 1;
+            NetworkManager.singleton.ServerChangeScene("ChooseGame");
         }
     }
 
@@ -77,10 +90,16 @@ public class GameOver1 : MonoBehaviour
         //add audio
     }
 
-    public void ShowGameOverScreen()
+    public void ShowGameOverScreen(uint winnerId)
     {
         _document.rootVisualElement.style.display = DisplayStyle.Flex;
+        if (winnerId == 0)
+        {
+            _wonLabel.text = "2. Oyuncu WON!!!";
+        }
+        else if (winnerId == 1)
+        {
+            _wonLabel.text = "1. Oyuncu WON!!!";
+        }
     }
 }
-
-
