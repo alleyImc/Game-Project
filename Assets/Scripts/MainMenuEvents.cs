@@ -40,6 +40,8 @@ public class MainMenuEvents : MonoBehaviour
         {
             _menuButtons[i].RegisterCallback<ClickEvent>(OnAllButtonsClick);
         }
+
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnDisable()
@@ -76,6 +78,6 @@ public class MainMenuEvents : MonoBehaviour
 
     private void OnAllButtonsClick(ClickEvent evt)
     {
-        //_audioSource.Play();
+        _audioSource.Play();
     }
 }
