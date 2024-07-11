@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Timer" style="flex-grow: 1;">
+        <ui:Label text="25&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TimerLabel" style="align-self: flex-end; width: 50%; height: 15%; font-size: 300%; -unity-text-align: upper-right; margin-top: 0; -unity-font-definition: ınitial; -unity-font: url(&quot;project://database/Assets/Fonts/Kenney%20Mini.ttf?fileID=12800000&amp;guid=1472718c855aede4fb869284dbfb7247&amp;type=3#Kenney Mini&quot;); margin-left: 0; margin-right: 0; color: rgb(255, 246, 246);" />
+    </ui:VisualElement>
+</ui:UXML>

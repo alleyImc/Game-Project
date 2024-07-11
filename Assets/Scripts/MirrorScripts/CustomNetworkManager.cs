@@ -10,6 +10,8 @@ public class CustomNetworkManager : NetworkManager
     public GameObject playerPrefabGame1Client;
     public GameObject playerPrefabGame2Host;
     public GameObject playerPrefabGame2Client;
+    public GameObject playerPrefabGame3Host;
+    public GameObject playerPrefabGame3Client;
 
     public override void OnStartServer()
     {
@@ -23,7 +25,7 @@ public class CustomNetworkManager : NetworkManager
         SceneManager.sceneLoaded -= OnServerSceneChanged;
     }
 
-    // Handles scene change for both games
+    // Handles scene change for all games
     void OnServerSceneChanged(Scene scene, LoadSceneMode mode)
     {
         foreach (NetworkConnectionToClient conn in NetworkServer.connections.Values)
@@ -35,6 +37,10 @@ public class CustomNetworkManager : NetworkManager
             else if (scene.name == "Game_2")
             {
                 SpawnCharacter(conn, playerPrefabGame2Host, playerPrefabGame2Client);
+            }
+            else if (scene.name == "Game_3")
+            {
+                SpawnCharacter(conn, playerPrefabGame3Host, playerPrefabGame3Client);
             }
         }
     }
@@ -58,6 +64,10 @@ public class CustomNetworkManager : NetworkManager
         else if (activeSceneName == "Game_2")
         {
             SpawnCharacter(conn, playerPrefabGame2Host, playerPrefabGame2Client);
+        }
+        else if (activeSceneName == "Game_3")
+        {
+            SpawnCharacter(conn, playerPrefabGame3Host, playerPrefabGame3Client);
         }
         else
         {
